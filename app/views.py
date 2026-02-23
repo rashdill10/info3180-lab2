@@ -1,7 +1,27 @@
 from app import app
 from flask import render_template, request, redirect, url_for, flash
+import datetime
 
+def format_date_joined(date):
+    return date.strftime("%B, %Y")
 
+@app.route('/profile')
+def profile():
+    date_joined = datetime.date(2021, 2, 7)  # choose your own date
+    formatted_date = format_date_joined(date_joined)
+
+    return render_template(
+        'profile.html',
+        fullname="Rashene Dillon",
+        username="@rashdill",
+        location="Kingston, Jamaica",
+        bio="I am a Computer Science Major and Management Studies minor at the University"
+        "of the West Indies. I enjoy fine dining and playing sports like tennis. ",
+        posts=120,
+        followers=340,
+        following=180,
+        date_joined=formatted_date
+    )
 ###
 # Routing for your application.
 ###
